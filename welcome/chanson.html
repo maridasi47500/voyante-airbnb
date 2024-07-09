@@ -1,0 +1,16 @@
+<h3>poste une chanson pour le jouer au/à la <%=db.User.getbyid(session["user_id"])["instrumentdemusique"] if session["user_id"] != "" else ""%><%=db.User.getbyid(session["user_id"])["iconmusic"] if session["user_id"] != "" else ""%></h3>
+<form action="/somesong" method="post">
+	<input type="hidden" name="user_id" value="<%=session["user_id"]%>"/>
+	<input type="hidden" name="lat" value="" id="member_lat"/>
+	<input type="hidden" name="lon" id="member_lon" value=""/>
+	<div class="field">
+		<label for="somemessage"></label>
+	<textarea  id="somemessage" name="content">
+	</textarea>
+	</div>
+	<div class="field">
+	<input type="submit" name="poster" value="poster ma chanson" />
+	</div>
+</form>
+<div id="map">
+</div>

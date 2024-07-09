@@ -1,0 +1,1 @@
+{"redirect": "/mycentering/<%=params["centering_id"]%>"}

@@ -1,0 +1,25 @@
+<h2>cki</h2>
+<%malist=db.Sing.fetchtwo()%>
+<audio controls src="/uploads<%=malist["bon"]["filename"]%>"></audio>
+
+<p>cki</p>
+<%=render_collection(collection=malist['list'], partial='welcome/_malist.html', as_='composer',mylocals={"bon":malist["bon"]})%>
+<div>
+<label for="option1">
+	numero 1
+</label>
+<input type="radio" name="composer" value="1"/>
+</div>
+<div>
+<label for="option1">
+	numero 2
+</label>
+<input type="radio" name="composer" value="2"/>
+</div>
+<div id="overlay">
+<div id="text">
+	<p class="performingmsg">&#127917;     &#127881;</p>
+	<p class="performingmsg">performing arts</p>
+	<button type="button" onclick="overlay.style.display='none';">fermer</button>
+</div>
+</div>

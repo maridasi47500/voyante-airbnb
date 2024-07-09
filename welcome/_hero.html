@@ -1,0 +1,25 @@
+<div class="col">
+<div class="card">
+	<img src="/uploads/<%=hero["pic"]%>" class="card-img-top" alt="<%=hero["nom"]%>">
+	<div class="card-body">
+	<p class="text">
+
+	<b>nom</b>
+
+ <%=hero["nom"]%>
+ </p>
+	<p class="text">
+
+	<b>sex</b>
+
+ <%="femme" if hero["sex"] == "f" else "homme"%>
+ <%="heroine de " if hero["sex"] == "f" else "heros de "%>
+ <%="&#127757; voyage" if hero["type"] == "voyage" else ""%>
+ <%="&#128268; electronique" if hero["type"] == "electronique" else ""%>
+ <%="&#127774; science" if hero["type"] == "science" else ""%>
+ </p>
+
+</div>
+</div>
+
+</div>

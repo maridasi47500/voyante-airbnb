@@ -1,0 +1,11 @@
+
+<p>je joue de <%=db.User.getbyid(session["user_id"])["instrumentdemusique"] if session["user_id"] != "" else ""%><%=db.User.getbyid(session["user_id"])["iconmusic"] if session["user_id"] != "" else ""%></p>
+<a href="/newperformance">new performance tip</a>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+
+	<%=render_collection(collection=db.Centering.getallbyuserid(session["user_id"]), partial='welcome/_centering.html', as_='post') if session["user_id"] is not None or session["user_id"] != "" else "vous n'tees pas connecte"%>
+
+</div>
+
+
+<hr>

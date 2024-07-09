@@ -1,0 +1,8 @@
+<div class="col"><div class="card" style="width: 18rem;" id="post<%=post["id"]%>">
+	<img src="/uploads/<%=post["pic"]%>" class="card-img-top" alt="post">
+	    <div class="card-body">
+		    <p class="card-text"><%=post["content"]%></p>
+		    <a href="/voir?lat=<%=post["lat"]%>&lon=<%=post["lon"]%>&post=post<%=post["id"]%>" class="btn btn-primary">Go somewhere</a>
+				  </div>
+</div>
+</div>

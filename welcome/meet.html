@@ -1,0 +1,30 @@
+<p> 
+
+<%pays=db.User.getbyid(session["user_id"])["pays"] if session["user_id"] != "" else ""%>
+<%x=db.User.getbyid(session["user_id"])["sex"] if session["user_id"] != "" else ""%>
+je cherche 
+<div>
+<input id="musicianf" type="radio" checked value="f" name="musician1"/>
+<label for="musicianf">femme</label>
+</div>
+<div>
+<input id="musicianm" type="radio" value="m" name="musician1"/>
+<label for="musicianm">homme</label>
+</div>
+
+pour jouer de la musique 
+qui vient aussi de 
+<span class="pays1"><%=pays%></span> dans ma région
+, c'est l'annonce ke vou voulé posté?
+<button type="button" id="somebtnpost">Ok</button>
+<%x=params["lieu"]%>
+<div hidden id="somelat"><%=x["lat"]%></div>
+<div hidden id="somelon"><%=x["lon"]%></div>
+</p>
+<div id="overlay">
+<div id="text">
+	<span class="unetelle"></span> veut vous rencontrer à <%=x["address"]%>
+	<div id="map">
+	</div>
+</div>
+</div>
