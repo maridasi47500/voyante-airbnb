@@ -24,7 +24,7 @@ class Cherchermusic():
              if len(xx) > 0 and xx != ")":
                print(xx)
     def searchmusic(self):
-       for x in "azertyuiopmlkjhgfdsqwxcvbn".split(""):
+       for x in list("azertyuiopmlkjhgfdsqwxcvbn"):
          html = requests.get("http://instrumentsdumonde.fr/az/instrument-"+x+".html", params=self.someparams)
          soup = BeautifulSoup(html.text, 'html.parser')
          malist=soup.select("[class=thumb]")
