@@ -7,7 +7,10 @@
 <td class="field ">
 	<label for="user_job_designer" >job</label>
 
-									    <input id="user_job_designer" type="text" name="job" />
+	<select id="user_job_designer" name="job">
+		    <%=render_collection(collection=db.Job.getall(), partial='user/_job.html', as_='job')%>
+
+	</select>
 
 </td>
 </tr>
