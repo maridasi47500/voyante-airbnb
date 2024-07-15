@@ -10,15 +10,12 @@ class Job(Model):
         self.cur=self.con.cursor()
         self.cur.execute("""create table if not exists job(
         id integer primary key autoincrement,
-        name text
+        name text,
+            picf text,
+            picm text
     , MyTimestamp DATETIME DEFAULT CURRENT_TIMESTAMP                );""")
         self.con.commit()
         #self.con.close()
-    def findallbymemberid(self,memberid):
-        self.cur.execute("select job.id as job_id, myjob.id as myjob_id, job.*, member.id as member_id from job left join myjob on myjob.job_id = job.id left join member on member.id = myjob.member_id where member.id = ?",(memberid,))
-
-        row=self.cur.fetchall()
-        return row
     def getall(self):
         self.cur.execute("select * from job")
 
@@ -54,7 +51,7 @@ class Job(Model):
         print(myhash,myhash.keys())
         myid=None
         try:
-          self.cur.execute("insert into job (name) values (:name)",myhash)
+          self.cur.execute("insert into job (name,picf,picm) values (:name,:picf,:picm)",myhash)
           self.con.commit()
           myid=str(self.cur.lastrowid)
         except Exception as e:

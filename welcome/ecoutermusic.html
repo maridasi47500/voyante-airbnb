@@ -53,3 +53,14 @@
   </div>
 <ul class="lyrics">
 </ul>
+
+<%metier=params["job"]%>
+<%myuser=db.User.getbyid(session["user_id"])["sex"]%>
+<p>
+votre metier de reve est 
+<%=metier["name"]%>
+<img src="/uploads/<%=metier["pic"+myuser]%>" width=200 height=200 />
+ou quelque chose d'important va arriver avec quelqu'un qui a le métier de 
+<%=metier["name"]%>
+
+</p>

@@ -75,26 +75,10 @@ class Route():
         self.set_redirect("/sign_in")
 
         return self.render_figure.render_redirect()
-    def newperformance(self,search):
-        return self.render_figure.render_figure("welcome/newperformance.html")
-    def jeux(self,search):
-        return self.render_figure.render_figure("welcome/jeux.html")
-    def heros(self,search):
-        return self.render_figure.render_figure("welcome/heros.html")
-    def meet(self,search):
-        user=self.db.User.getbyid(self.Program.get_session()["user_id"])
-        if user:
-          hey=Geolocation("bar",500).geolocate(user["lat"],user["lon"])[0]
-        else:
-            hey={"lat":"","lon":""}
-        print("azeryt ",dict(hey))
-        self.render_figure.set_param("lieu",hey)
-        return self.render_figure.render_figure("welcome/meet.html")
-    def myperformance(self,search):
-        return self.render_figure.render_figure("welcome/myperformance.html")
-    def cki(self,search):
-        return self.render_figure.render_figure("welcome/cki.html")
+    def miroir(self,search):
+        return self.render_figure.render_figure("welcome/miroir.html")
     def ecoutermusic(self,search):
+        self.render_figure.set_param("job",random.choice(self.db.Job.getall()))
         return self.render_figure.render_figure("welcome/ecoutermusic.html")
     def voir(self,search):
         self.render_figure.set_param("lat",search["lat"][0])
@@ -162,24 +146,6 @@ class Route():
           self.set_notice("erreur quand vous avez envoyé le formulaire")
         self.render_figure.set_param("post_id",myparam["id"])
         return self.render_some_json("welcome/mypost.json")
-    def createcentering(self,search):
-        myparam=self.get_post_data()(params=("focalpoint","muscles","aim","piece","intention","soundlike","tryagain","notes","cue","rating","elapsedtime","user_id",))
-        hi=self.db.Centering.create(myparam)
-        if hi:
-          self.set_notice("votre centering a été ajouté")
-        else:
-          self.set_notice("erreur quand vous avez envoyé votre centering")
-        self.render_figure.set_param("centering_id",hi["centering_id"])
-        return self.render_some_json("welcome/mycentering.json")
-    def createhero(self,search):
-        myparam=self.get_post_data()(params=("nom","pic","type","sex","user_id",))
-        hi=self.db.Hero.create(myparam)
-        if hi:
-          self.set_notice("votre hero été ajouté")
-        else:
-          self.set_notice("erreur quand vous avez envoyé le formulaire")
-        self.render_figure.set_param("redirect","/heros")
-        return self.render_some_json("welcome/redirect.json")
     def aboutme(self,search):
         print("hello action")
         print("hello action")
@@ -259,12 +225,6 @@ class Route():
         self.render_figure.set_param("membre",monmembre)
         self.render_figure.set_param("membre_id",monmembre["member_id"])
         return self.render_figure.render_figure("ajouter/jobs.html")
-    def mycentering(self,params={}):
-        getparams=("id",)
-        print("get param, action see my new",getparams)
-        myparam=self.get_this_route_param(getparams,params)
-        self.render_figure.set_param("centering",self.db.Centering.getbyid(myparam["id"]))
-        return self.render_figure.render_figure("welcome/voircentering.html")
     def voirpersonne(self,params={}):
         getparams=("id",)
         print("get param, action see my new",getparams)
@@ -381,28 +341,6 @@ class Route():
             print("user user Non")
             self.set_json("{\"redirect\":\"/\"}")
             return self.render_figure.render_json()
-    def somesong(self,params={}):
-        myparam=self.get_post_data()(params=("content","user_id","lat","lon"))
-        self.user=self.db.Song.create(myparam)
-        if self.user["song_id"]:
-            self.set_notice("vous avez créé la sogn")
-            self.set_json("{\"redirect\":\"/\"}")
-            return self.render_figure.render_json()
-        else:
-            self.set_notice("erreur vous avez créé la song")
-            self.set_json("{\"redirect\":\"/\"}")
-            return self.render_figure.render_json()
-    def somepost(self,params={}):
-        myparam=self.get_post_data()(params=("content","pic","user_id","lat","lon"))
-        self.user=self.db.Post.create(myparam)
-        if self.user["post_id"]:
-            self.set_notice("vous avez créé le post")
-            self.set_json("{\"redirect\":\"/\"}")
-            return self.render_figure.render_json()
-        else:
-            self.set_notice("erreur vous avez créé le post")
-            self.set_json("{\"redirect\":\"/\"}")
-            return self.render_figure.render_json()
     def run(self,redirect=False,redirect_path=False,path=False,session=False,params={},url=False,post_data=False):
         if post_data:
             print("post data")
@@ -450,19 +388,9 @@ class Route():
             path=path.split("?")[0]
             print("link route ",path)
             ROUTES={
-            "^/jeux$":self.jeux,
-            "^/meet$":self.meet,
-            "^/heros$":self.heros,
-            "^/mycentering/([0-9]+)$":self.mycentering,
-            '^/createhero$': self.createhero,
-            '^/createcentering$': self.createcentering,
-            '^/newperformance$': self.newperformance,
-            '^/myperformance$': self.myperformance,
-            '^/cki$': self.cki,
+            '^/miroir$': self.miroir,
             '^/music$': self.ecoutermusic,
             '^/voir$': self.voir,
-            '^/somepost$': self.somepost,
-            '^/somesong$': self.somesong,
             '^/aboutme$': self.aboutme,
             '^/sign_in$': self.signin,
             '^/sign_up$': self.signup,

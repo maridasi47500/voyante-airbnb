@@ -60,6 +60,14 @@ class Song(Model):
         job=self.cur.fetchall()
         self.con.commit()
         return None
+    def getbyname(self,myid):
+        self.cur.execute("select * from song where title = ?",(myid,))
+        row=None
+        try:
+          row=dict(self.cur.fetchone())
+        except:
+          row=None
+        return row
     def getbyid(self,myid):
         self.cur.execute("select * from song where id = ?",(myid,))
         row=dict(self.cur.fetchone())
