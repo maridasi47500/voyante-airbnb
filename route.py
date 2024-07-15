@@ -75,6 +75,13 @@ class Route():
         self.set_redirect("/sign_in")
 
         return self.render_figure.render_redirect()
+    def profil(self,search):
+        self.render_figure.set_param("aider",random.choice(["voudra vuos aider","ne voudra pas vous aider"]))
+        self.render_figure.set_param("rencontrer",random.choice(["vous voudrez rencontrer","vous voudrez quitter"]))
+        self.render_figure.set_param("nb",random.choice(["seulement 1","2","20","100","200"]))
+        self.render_figure.set_param("bon",random.choice(["bonnes","mauvaises"]))
+
+        return self.render_figure.render_figure("welcome/profil.html")
     def miroir(self,search):
         return self.render_figure.render_figure("welcome/miroir.html")
     def ecoutermusic(self,search):
@@ -388,6 +395,7 @@ class Route():
             path=path.split("?")[0]
             print("link route ",path)
             ROUTES={
+            '^/profil$': self.profil,
             '^/miroir$': self.miroir,
             '^/music$': self.ecoutermusic,
             '^/voir$': self.voir,

@@ -1,0 +1,18 @@
+<p>ki vous aller rencontrer</p>
+<div class="field">
+	<label for="id_f">femme</label>
+	<input type="radio" id="id_f" name="ki1" value="f" />
+</div>
+<div class="field">
+	<label for="id_m">homme</label>
+	<input type="radio"  id="id_m" name="ki1" value="f" />
+</div>
+<p><button type="button" onclick="cki.innerHTML+=(Math.round(Math.random()) == 1 ? 'oui' : 'non');cki.innerHTML+=cki.innerHTML==='oui' ? (id_f.checked ? ', une femme' : ', un homme') : (id_m.checked ? ', une femme' : ', un homme');reponse.style.display='block';this.onclick='';">demander </button></p>
+
+<p id="cki"></p>
+<p style="display:none;" id="reponse">la personne <%=params["aider"]%>. 
+<%=params["rencontrer"]%> la personne.
+peut-être que vous croiserez la personne <%=params["nb"]%> fois. 
+il va vous arriver des <%=params["bon"]%> choses. 
+
+</p>
