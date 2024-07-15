@@ -1,16 +1,16 @@
 - voyante airbnb
 - laisse moi deviner ton avenir
 
-- pour des intrument de musique(telecharger des instrument de musique)
+- pour une meilleur voyance et ajouter des intrument de musique(telecharger des instrument de musique)
 ```
 $ python3 cherchermusic.py
 ```
-- lancer
+- pour ajouter des metiers lancer
 
 ```
-$ python3 addinstrument.py
+$ python3 addjob.py
 ```
-- lancer (optionnel):
+- pour ajouter des pays lancer :
 ```
 $ python3 addcountry.py
 ```
