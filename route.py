@@ -2,6 +2,7 @@ from directory import Directory
 from render_figure import RenderFigure
 from geolocation import Geolocation
 from user import User
+from scriptpython import Scriptpython
 from mydb import Mydb
 from mymusic import Music
 from mypic import Pic
@@ -22,6 +23,7 @@ class Route():
         self.render_figure=RenderFigure(self.Program)
         self.db=Mydb()
         self.getparams=("id",)
+        self.monscript=Scriptpython
     def set_post_data(self,x):
         self.post_data=x
     def get_some_post_data(self,params=()):
@@ -153,10 +155,11 @@ class Route():
           self.set_notice("erreur quand vous avez envoyé le formulaire")
         self.render_figure.set_param("post_id",myparam["id"])
         return self.render_some_json("welcome/mypost.json")
+    def actualite(self,search):
+        ok=self.monscript("voyante")
+        ok.lancer()
+        return self.render_figure.render_figure("welcome/actualite.html")
     def aboutme(self,search):
-        print("hello action")
-        print("hello action")
-        print("hello action")
         return self.render_figure.render_figure("welcome/aboutme.html")
     def hello(self,search):
         print("hello action")
@@ -402,6 +405,7 @@ class Route():
             '^/aboutme$': self.aboutme,
             '^/sign_in$': self.signin,
             '^/sign_up$': self.signup,
+            '^/actualite$': self.actualite,
             '^/logmeout$':self.logout,
             '^/signup$':self.save_user,
             '^/save_user$':self.save_user,

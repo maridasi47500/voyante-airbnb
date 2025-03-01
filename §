@@ -1,7 +1,0 @@
-<img style="width:100%;" src="/anonymous.jpeg"/> 
-<h1>Hi ! I am bulletproof hacker.</h1>
-<p> <a href="/sign_up">s'inscrire</a></p>
-
-<p>Dans cette entreprise, heures : 	
-9h &#128344; - 5pm &#128340;</p>
-<%="" if session["user_id"] == "" else Fichier("./welcome",".html").lire() %>
