@@ -1,1 +1,1 @@
-python3.9 ./monscript/voyante.py
+python3 ./monscript/voyante.py
